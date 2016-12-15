@@ -36,3 +36,18 @@ antsRegistrationSyNQuick.sh -d 2 -f data/r16slice.jpg -m data/r64slice.jpg -t s 
 ```
 
 and compare the results.
+
+you should then try to recreate all these example outputs yourself via direct
+calls to the programs
+
+```
+antsRegistration
+```
+
+and
+
+```
+antsApplyTransforms
+```
+
+and compare different parameters, thinking about how they impact the output.
