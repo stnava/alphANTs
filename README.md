@@ -85,6 +85,7 @@ programName --help
 Example of other programs:
 
 ```
+CreateJacobianDeterminantImage 2 output/syn1Warp.nii.gz output/jac.nii.gz 1 0
 ThresholdImage 2 data/r16slice.jpg output/mask.nii.gz 20 Inf
 N3BiasFieldCorrection 2 data/r16slice.jpg output/r16n3.nii.gz
 Atropos -d 2 -a output/r16n3.nii.gz -x output/mask.nii.gz -i kmeans[3] -c [10,0] -m [0.1,1x1] -o \
