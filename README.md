@@ -66,3 +66,35 @@ finally, note that `ANTsR` is another level of access to these same programs and
 allows one to employ R-based statistics.  We also supply Atropos for a variety
 of segmentation tasks, random forest based segmentation via `mrvnrf` and Linda
 and many other tools that enable one to build custom pipelines for imaging data.
+
+
+Brief notes:
+
+for help for any program, type:
+
+```
+programName -h
+```
+
+or
+
+```
+programName --help
+```
+
+Example of other programs:
+
+```
+ThresholdImage 2 data/r16slice.jpg output/mask.nii.gz 20 Inf
+N3BiasFieldCorrection 2 data/r16slice.jpg output/r16n3.nii.gz
+Atropos -d 2 -a output/r16n3.nii.gz -x output/mask.nii.gz -i kmeans[3] -c [10,0] -m [0.1,1x1] -o \
+  [output/seg.nii.gz,output/seg_prob%02d.nii.gz] -v 1
+ThresholdImage 2 output/seg.nii.gz output/csf.nii.gz 1 1
+ImageMath 2 output/csflarge.nii.gz  GetLargestComponent output/csf.nii.gz
+ImageMath 2 output/csfdil.nii.gz  MD output/csf.nii.gz 1 # dilation
+ImageMath 2 output/csffill.nii.gz  FillHoles output/csfdil.nii.gz
+LabelClustersUniquely 2 output/csf.nii.gz  output/csflab.nii.gz 2
+```
+
+Many more possibilities exist. See additional documentation, especially in
+[ANTsR](http://stnava.github.io/ANTsR/) and in the [FAQ page](https://github.com/stnava/ANTsTutorial/blob/master/handout/antsGithubExamples.Rmd).
